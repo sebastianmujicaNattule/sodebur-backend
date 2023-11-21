@@ -35,7 +35,7 @@ app.set('port', port);
 usersRoutes(app);
 ciudadRoutes(app);
 
-server.listen(3000, '82.165.10.83' ||'localhost', function() {
+server.listen(3030, '82.165.10.83' ||'localhost', function() {
     console.log('Server '+process.pid +' iniciada');
 });
 
