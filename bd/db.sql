@@ -1,4 +1,4 @@
-use lubricantessky;
+use sodebur;
 
 CREATE TABLE users(
 	id bigint PRIMARY KEY auto_increment,
