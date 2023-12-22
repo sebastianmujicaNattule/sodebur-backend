@@ -9,7 +9,12 @@ CREATE TABLE users(
     image varchar(255),
     password varchar(90) not null,
     created_at timestamp(0) not null,
-    updated_at timestamp(0) not null
+    updated_at timestamp(0) not null,
+    deleted_at timestamp(0) not null,
+    created_by bigint not null,
+    updated_by bigint not null,
+    deleted_by bigint not null,
+    row_status bigint not null default 0
 );
 
 use sodebur;
@@ -19,8 +24,13 @@ CREATE TABLE roles (
     name VARCHAR(90) NOT NULL UNIQUE,
     image VARCHAR(255) NULL,
     route VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP(0) NOT NULL,
-    update_at TIMESTAMP(0) NOT NULL
+    created_at timestamp(0) not null,
+    updated_at timestamp(0) not null,
+    deleted_at timestamp(0) not null,
+    created_by bigint not null,
+    updated_by bigint not null,
+    deleted_by bigint not null,
+    row_status bigint not null default 0
 );
 
 INSERT INTO roles(
@@ -62,8 +72,13 @@ VALUES(
 CREATE TABLE user_has_roles(
 	id_user BIGINT NOT NULL,
     id_rol BIGINT NOT NULL,
-    created_at TIMESTAMP(0) NOT NULL,
-    update_at TIMESTAMP(0) NOT NULL,
+    created_at timestamp(0) not null,
+    updated_at timestamp(0) not null,
+    deleted_at timestamp(0) not null,
+    created_by bigint not null,
+    updated_by bigint not null,
+    deleted_by bigint not null,
+    row_status bigint not null default 0,
     FOREIGN KEY(id_user) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY(id_rol) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY(id_user,id_rol)
