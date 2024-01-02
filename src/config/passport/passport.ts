@@ -4,6 +4,7 @@ import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 import { User } from '../../domain/models/user';
 import { FindByIdUser } from '../../domain/use-cases/user/find-by-id';
 
+/*
 export default (passport: PassportStatic, db) => {
   dotenv.config();
   passport.use(new JWTStrategy({
@@ -23,3 +24,4 @@ export default (passport: PassportStatic, db) => {
   }));
 };
 
+*/
