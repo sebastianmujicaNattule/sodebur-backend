@@ -96,6 +96,6 @@ async function getPGDS() {
 
     server.use("/user", userMiddleWare)
     server.use("/contact", contactMiddleWare)
-    server.listen(4000, () => console.log("Running on http://localhost:4000"))
+    server.listen(3030, () => console.log("Running on http://localhost:3030"))
 
 })()
