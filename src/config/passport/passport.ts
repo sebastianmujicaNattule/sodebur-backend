@@ -3,7 +3,6 @@ import { PassportStatic } from 'passport';
 import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 import { User } from '../../domain/models/user';
 import { FindByIdUser } from '../../domain/use-cases/user/find-by-id';
-import 
 
 export default (passport: PassportStatic, db) => {
   dotenv.config();
