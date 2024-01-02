@@ -40,7 +40,7 @@ export default function UserRouter(
         }
     })
 
-    router.get('/', passport.authenticate('jwt',{session: false}), async (req: Request, res: Response) => {
+    router.get('/', async (req: Request, res: Response) => {
         try {
             const users = await getAllUserUseCase.execute()
             res.send(users)
@@ -51,7 +51,7 @@ export default function UserRouter(
         }
     })
 
-    router.delete('/:id', passport.authenticate('jwt',{session: false}),async (req: Request, res: Response ) =>{
+    router.delete('/:id', async (req: Request, res: Response ) =>{
         try{
             await deleteUserUseCase.execute(req.params.id)
             res.statusCode = 201
@@ -62,7 +62,7 @@ export default function UserRouter(
         }
     })
 
-    router.put('/:id', passport.authenticate('jwt',{session: false}),async (req: Request, res: Response ) =>{
+    router.put('/:id', async (req: Request, res: Response ) =>{
         try{
             await updateUserUseCase.execute(req.params.id,req.body)
             res.statusCode = 201
