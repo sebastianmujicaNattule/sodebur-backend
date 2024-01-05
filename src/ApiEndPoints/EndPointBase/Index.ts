@@ -6,7 +6,7 @@ class EndPointBase {
   protected response: any;
   protected status: boolean;
   protected mysqlConnection: null | Pool;
-  protected props: object | null;
+  protected props: any | null;
   protected userIsLoggedIn: boolean;
   protected userId: null | number;
 

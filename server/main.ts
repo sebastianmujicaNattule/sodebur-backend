@@ -12,6 +12,7 @@ app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 app.post('/', upload.none(), async (request: any, response: any) => {
+  console.log(request.body);
   const { api, token, props } = request.body;
 
   const Api = new ApiEntryPoint({
