@@ -2,7 +2,7 @@
   "name": "contacts-api",
   "version": "1.0.0",
   "description": "",
-  "main": "./server/main.ts",
+  "main": "nodemon ./server/main.ts",
   "scripts": {
     "test": "jest --watchAll --collectCoverage",
     "dev:build": "tsc",

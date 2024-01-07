@@ -1,5 +1,4 @@
 import {
-  IEndPointResponse,
   IResponseError,
 } from '../ApiEndPoints/Interfaces/Index';
 import openEndPoints from '../ApiEndPoints/openEndPoints';

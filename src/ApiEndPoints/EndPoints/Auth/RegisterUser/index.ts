@@ -1,6 +1,9 @@
+import { IRegisterUserProps } from '../../../../ApiEntryPoint/Interfaces/RequestProps';
 import EndPointBase from '../../../EndPointBase/Index';
 
 class RegisterUser extends EndPointBase {
+  protected props!: IRegisterUserProps;
+  
   public execute() {
     return new Promise(async (resolve) => {
       this.mysqlConnection?.query(`
