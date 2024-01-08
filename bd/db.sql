@@ -83,3 +83,28 @@ CREATE TABLE user_has_roles(
     FOREIGN KEY(id_rol) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY(id_user,id_rol)
 );
+
+/*  SOD-79   */
+
+DROP TABLE IF EXISTS `authTokens`;
+CREATE TABLE `authTokens` (
+  `tokenId` int NOT NULL DEFAULT '0',
+  `userId` int NOT NULL,
+  `token` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `os` int NOT NULL,
+  `expireDate` int NOT NULL,
+  `status` int NOT NULL DEFAULT '1',
+  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateModified` timestamp NOT NULL,
+  `dateLogOut` timestamp NOT NULL,
+  `nameToken` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`tokenId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `operativeSystems`;
+CREATE TABLE `operativeSystems` (
+  `idOs` int NOT NULL COMMENT 'Este id es codificado a mano aleatorio y no con auto increment.',
+  `name` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`idOs`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+INSERT INTO `operativeSystems` VALUES (13131829,'Linux'),(13262881,'Windows NT 10.0+'),(17756786,'Mac OS X+'),(21631998,'Windows NT 5.1+'),(27559946,'Windows NT 5.2+'),(29131813,'No identificado'),(44822319,'Windows NT 6.3+'),(51630652,'Macintosh'),(65588027,'Android'),(69650192,'Windows NT 6.2+'),(73945955,'Windows otros'),(96519663,'Windows NT 6.1+'),(99386745,'Thunder Client (https://www.thunderclient.com)'),(99677717,'iPhone'),(99764755,'Windows NT 6.0+');
