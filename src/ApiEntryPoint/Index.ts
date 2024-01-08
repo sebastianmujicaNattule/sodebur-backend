@@ -1,8 +1,6 @@
-import {
-  IResponseError,
-} from '../ApiEndPoints/Interfaces/Index';
+import { IResponseError } from '../ApiEndPoints/Interfaces/Index';
 import openEndPoints from '../ApiEndPoints/openEndPoints';
-import { IRequestBody } from './Interfaces/Index';
+import { IRequestBody, IRequestHeaders } from './Interfaces/Index';
 import { ApiResponseError, SessionControl } from '../Components/Index';
 import GetMysqlConnection from '../Db/GetMysqlConnection';
 import ApiEndPoints from '../ApiEndPoints/Index';
@@ -15,8 +13,9 @@ class ApiEntryPoint {
   private error: IResponseError | null;
   private status: boolean;
   private response: any;
+  private requestHeaders: IRequestHeaders;
 
-  constructor(props: IRequestBody) {
+  constructor(props: IRequestBody, requestHeaders: IRequestHeaders) {
     this.userIsLoggedIn = false;
     this.userId = null;
     this.requestBody = props;
@@ -24,9 +23,10 @@ class ApiEntryPoint {
     this.error = null;
     this.status = false;
     this.response = null;
+    this.requestHeaders = requestHeaders;
   }
 
-  public setVars() {
+  public init() {
     return new Promise((resolve) => {
       this.mysqlConnection = GetMysqlConnection();
       resolve(true);
@@ -35,25 +35,31 @@ class ApiEntryPoint {
 
   public execute() {
     return new Promise(async (resolve) => {
-      if (openEndPoints.includes(this.requestBody.api)) {
+      if (this.requestBody.token || !openEndPoints.includes(this.requestBody.api)) {
         const Security = new SessionControl(
           this.mysqlConnection,
-          this.requestBody.token
+          this.requestBody.token,
+          this.requestHeaders
         );
+        await Security.init();
 
-        const tokenStatus = await Security.validateToken();
-
-        if (tokenStatus !== true) {
-          const error = ApiResponseError('invalidToken');
+        if (Security.getTokenStatus() !== true) {
+          const error = ApiResponseError('invalidUserToken');
           this.setError(error);
-          return;
+          resolve(false);
         }
+
+        this.setUserId(Security.getUserId());
       }
 
       await this.executeEndPoint();
 
       resolve(true);
     });
+  }
+
+  private setUserId(userId: number): void {
+    this.userId = userId;
   }
 
   private executeEndPoint() {

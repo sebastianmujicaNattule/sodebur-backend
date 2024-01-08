@@ -5,7 +5,6 @@ class Testing extends EndPointBase {
   protected props!: ITest;
   public execute() {
     return new Promise(async (resolve) => {
-      console.log(this.props.testValue);
       this.setStatus(true);
       this.setResponse({ a: 1, b: 2 });
       this.setErrorCode('testingError');

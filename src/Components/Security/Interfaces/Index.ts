@@ -1,4 +1,4 @@
 export interface IUserToken {
-    up: number; //user platform
+    ed: number; //expire date
     st: string; //session token
 }
