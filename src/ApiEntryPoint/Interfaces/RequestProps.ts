@@ -1,4 +1,4 @@
-export type IRequestProps = null | ITest | IRegisterUserProps;
+export type IRequestProps = null | ITest | IRegisterUserProps | IUserLogin;
 
 export interface ITest {
   testValue: string;
@@ -14,4 +14,9 @@ export interface IRegisterUserProps {
   deleted_at: string;
   created_by: string;
   updated_by: string;
+}
+
+export interface IUserLogin {
+  email: string;
+  pass: string;
 }

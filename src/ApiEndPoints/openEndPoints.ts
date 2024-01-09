@@ -1,3 +1,3 @@
-const openEndPoints = ['RegisterUser','Testing'];
+const openEndPoints = ['RegisterUser', 'Testing', 'UserLogin'];
 
 export default openEndPoints;

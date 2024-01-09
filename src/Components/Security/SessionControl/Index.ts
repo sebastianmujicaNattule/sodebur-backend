@@ -1,6 +1,5 @@
 import { IUserToken } from '../Interfaces/Index';
 import OperativeSystems from '../../OperativeSystems/Index';
-import { ISessionToken } from './Interfaces/Index';
 import { IRequestHeaders } from '../../../ApiEntryPoint/Interfaces/Index';
 
 class SessionControl {

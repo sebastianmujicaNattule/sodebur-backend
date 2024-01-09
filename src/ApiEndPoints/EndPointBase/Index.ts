@@ -1,15 +1,17 @@
 import { Pool } from 'mysql2/typings/mysql/lib/Pool';
 import { IRequestProps } from '../../ApiEntryPoint/Interfaces/RequestProps';
+import { IRequestHeaders } from '../../ApiEntryPoint/Interfaces/Index';
 
 class EndPointBase {
   protected errorCode!: null | string;
   protected errorMessage!: null | string;
   protected response!: any;
   protected status!: boolean;
-  protected mysqlConnection!: null | Pool;
+  protected mysqlConnection!: any;
   protected props!: IRequestProps;
   protected userIsLoggedIn!: boolean;
   protected userId!: null | number;
+  protected requestHeader!: IRequestHeaders;
 
   public setUserIsLoggedIn(status: boolean) {
     this.userIsLoggedIn = status;
@@ -27,7 +29,11 @@ class EndPointBase {
     this.props = props;
   }
 
-  public setDatabaseConnection(mysqlConnection: Pool) {
+  public setRequestHeader(requestHeader: IRequestHeaders): void {
+    this.requestHeader = requestHeader;
+  }
+
+  public setDatabaseConnection(mysqlConnection: any) {
     this.mysqlConnection = mysqlConnection;
   }
 

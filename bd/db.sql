@@ -88,7 +88,7 @@ CREATE TABLE user_has_roles(
 
 DROP TABLE IF EXISTS `authTokens`;
 CREATE TABLE `authTokens` (
-  `tokenId` int NOT NULL DEFAULT '0',
+  `tokenId` int NOT NULL AUTO_INCREMENT,
   `userId` int NOT NULL,
   `token` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `os` int NOT NULL,
@@ -108,3 +108,7 @@ CREATE TABLE `operativeSystems` (
   PRIMARY KEY (`idOs`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 INSERT INTO `operativeSystems` VALUES (13131829,'Linux'),(13262881,'Windows NT 10.0+'),(17756786,'Mac OS X+'),(21631998,'Windows NT 5.1+'),(27559946,'Windows NT 5.2+'),(29131813,'No identificado'),(44822319,'Windows NT 6.3+'),(51630652,'Macintosh'),(65588027,'Android'),(69650192,'Windows NT 6.2+'),(73945955,'Windows otros'),(96519663,'Windows NT 6.1+'),(99386745,'Thunder Client (https://www.thunderclient.com)'),(99677717,'iPhone'),(99764755,'Windows NT 6.0+');
+
+/* SOD-21 */
+ALTER TABLE `users` 
+	CHANGE `id` `userId` bigint NOT NULL AUTO_INCREMENT ;

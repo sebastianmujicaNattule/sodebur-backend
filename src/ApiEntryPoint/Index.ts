@@ -66,6 +66,7 @@ class ApiEntryPoint {
     return new Promise(async (resolve) => {
       const EndPoint = ApiEndPoints(this.requestBody.api);
 
+      EndPoint.setRequestHeader(this.requestHeaders);
       EndPoint.setProps(this.requestBody.props);
       EndPoint.setUserIsLoggedIn(this.userIsLoggedIn);
       EndPoint.setIdUser(this.userId);
